@@ -1,0 +1,11 @@
+{
+	"ImportPath": ".",
+	"GoVersion": "go1.4",
+	"Deps": [
+		{
+			"ImportPath": "github.com/cloudfoundry/cli/plugin",
+			"Comment": "v6.14.0-149-gc259ad5",
+			"Rev": "c259ad5d253425ce5e37aab076e49573495fd069"
+		}
+	]
+}
