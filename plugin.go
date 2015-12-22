@@ -11,8 +11,7 @@ type MyFirstPlugin struct{}
 func (mfp *MyFirstPlugin) Run(cliConnection plugin.CliConnection, args []string) {
 	fmt.Println("`cf push` from Plugin")
 
-	var pushargs []string
-	pushargs = append(pushargs, "push")
+	pushargs := []string{"push"}
 	pushargs = append(pushargs, args[1:]...)
 	cliConnection.CliCommand(pushargs...)
 }
