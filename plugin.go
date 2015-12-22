@@ -9,7 +9,8 @@ import (
 type MyFirstPlugin struct{}
 
 func (mfp *MyFirstPlugin) Run(cliConnection plugin.CliConnection, args []string) {
-	fmt.Println("Hello, CF Plugin!")
+	fmt.Println("`cf push` from Plugin")
+	cliConnection.CliCommand("push")
 }
 
 func (mfp *MyFirstPlugin) GetMetadata() plugin.PluginMetadata {
