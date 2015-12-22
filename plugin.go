@@ -22,7 +22,9 @@ func (mfp *MyFirstPlugin) Run(cliConnection plugin.CliConnection, args []string)
 	fmt.Scanf("%s", &yn)
 
 	if yn == "yes" {
-		cliConnection.CliCommand("push")
+		pushargs := []string{"push"}
+		pushargs = append(pushargs, args[1:]...)
+		cliConnection.CliCommand(pushargs...)
 	} else {
 		fmt.Println("Bye!")
 	}
