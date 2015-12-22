@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os/exec"
 
 	"github.com/cloudfoundry/cli/plugin"
 )
@@ -9,8 +10,22 @@ import (
 type MyFirstPlugin struct{}
 
 func (mfp *MyFirstPlugin) Run(cliConnection plugin.CliConnection, args []string) {
-	fmt.Println("`cf push` from Plugin")
-	cliConnection.CliCommand("push")
+	fmt.Println("----------------")
+	fmt.Println(" branch checker ")
+	fmt.Println("----------------")
+
+	output, _ := exec.Command("git", "rev-parse", "--abbrev-ref", "HEAD").CombinedOutput()
+	fmt.Println("On branch " + string(output))
+
+	var yn string
+	fmt.Printf("Is it OK? (yes/no) :")
+	fmt.Scanf("%s", &yn)
+
+	if yn == "yes" {
+		cliConnection.CliCommand("push")
+	} else {
+		fmt.Println("Bye!")
+	}
 }
 
 func (mfp *MyFirstPlugin) GetMetadata() plugin.PluginMetadata {
